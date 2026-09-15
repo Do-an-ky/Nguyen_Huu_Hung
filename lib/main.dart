@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -8,6 +9,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAuth.instance.signInAnonymously();
   runApp(const DoAnKyApp());
 }
 
@@ -146,7 +148,9 @@ class _FallDetectionScreenState extends State<FallDetectionScreen> {
                     const SizedBox(height: 15),
                     ElevatedButton.icon(
                       onPressed: () {
-                        _dbRef.update({"state": "IDLE"});
+                        _dbRef.update({"state": "IDLE"}).catchError((e) {
+                          debugPrint("Lỗi cập nhật Firebase: $e");
+                        });
                       },
                       icon: const Icon(Icons.notifications_off, color: Colors.red),
                       label: const Text('XÁC NHẬN ĐÃ XEM (ẨN CẢNH BÁO)', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
