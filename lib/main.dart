@@ -1,6 +1,6 @@
 // =============================================================================
 //  ỨNG DỤNG CẢNH BÁO TÉ NGÃ CHO NGƯỜI THÂN - v2.0
-//  Đồng bộ với firmware FallDetector_ESP32 v2.0
+//  Đồng bộ với firmware FallDetector_ESP32 v3.0.0 (Mpu6050.ino)
 //
 //  Thay đổi so với v1:
 //   - Lược đồ dữ liệu đa thiết bị: /devices/<deviceId>/{status,command,events}
